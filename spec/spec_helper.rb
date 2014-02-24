@@ -7,8 +7,7 @@ Bundler.setup
   Dir.glob(File.expand_path("../#{dir}/**/*.rb", __FILE__), &method(:require))
 end
 
-require 'pp'
-require 'grape-cache'
+require 'grape-cache_control'
 
 RSpec.configure do |config|
   config.expect_with :rspec do |c|

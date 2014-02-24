@@ -17,7 +17,7 @@ Here are some ways *you* can contribute:
 * by closing [issues][]
 * by reviewing patches
 
-[issues]: https://github.com/karlfreeman/grape-cache/issues
+[issues]: https://github.com/karlfreeman/grape-cache_control/issues
 
 ## Submitting an Issue
 We use the [GitHub issue tracker][issues] to track bugs and features. Before
