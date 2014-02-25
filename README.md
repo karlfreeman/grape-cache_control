@@ -27,11 +27,11 @@ cache_control :public, :no_store, max_age: (Time.now + 900), s_maxage: (Time.now
 # Cache-Control:private,must-revalidate,max=age=0
 cache_control :private, :must_revalidate, max_age: 0
 
-# Cache-Control: public,max-age=900
+# Cache-Control:public,max-age=900
 # Expires:Tue, 25 Feb 2014 12:00:00 GMT
 expires 900, :public
 
-# Cache-Control: private,no-cache,no-store,max-age=900
+# Cache-Control:private,no-cache,no-store,max-age=900
 # Expires:Tue, 25 Feb 2014 12:00:00 GMT
 expires (Time.now + 900), :private, :no_store
 ```
@@ -41,28 +41,28 @@ class API < Grape::API
 
   desc 'A completely random endpoint'
   get '/very-random' do
-    # ensure proxy cache's do not cache this
+    # ensure proxy cache does not cache this
     cache_control :no_cache
     { very_random: Random.rand(100) }
   end
 
   desc 'An endpoint which rounds to the nearest 15 minutes'
   get '/fairly-static' do
-    # cache for 15 minutes
+    # cache for 15 minutes, publicly
     cache_control :public, max_age: 900
     { fairly_static: Time.at(Time.now.to_i - (Time.now.to_i % 900)) }
   end
 
   desc 'An endpoint which rounds to the nearest day'
   get '/reasonably-static' do
-    # cache for 15 minutes, however allow the proxy cache to cache for the whole day
+    # cache for 15 minutes, however allow the proxy cache to hold on to it a day
     cache_control :public, max_age: 900, s_maxage 86400
     { reasonably_static: Time.at(Time.now.to_i - (Time.now.to_i % 86400)) }
   end
 
   desc 'A very secure endpoint'
   get '/your-bank-account-details' do
-    # explicitly don't store or cache this response
+    # explicitly don't store or cache this response and assume its immediately stale
     cache_control :private, :must_revalidate, max_age: 0
     { your_bank_account_details: '0000-0000-0000-0000' }
   end
@@ -72,18 +72,18 @@ class API < Grape::API
     # cache for a minute but don't allow it to be stored
     cache_control :no_store, max_age: 60
     is_private = [true, false].sample
-    # then merge ontop its privacy
+    # then add its privacy status
     cache_control is_private ? :public : :private
     { sometimes_private: is_private }
   end
   
   desc 'An endpoint which expires based on some business logic'
   get '/randomly-expiring' do
-    # specify upfront its public
+    # publicy cache this
     cache_control :public
     random_future_expiry = Random.rand(60 * 60) + 60
     is_expired = Time.now + random_future_expiry
-    # then merge ontop is actual expiration
+    # then merge add it's expiration later on
     cache_control max_age: is_expired
     { randomly_expiring: is_expired }
   end
@@ -98,7 +98,7 @@ class API < Grape::API
 
   desc 'An endpoint which rounds to the nearest 15 minutes'
   get '/fairly-static' do
-    # cache for 15 minutes
+    # cache for 15 minutes, publicly
     expires 900, :public
     { fairly_static: Time.at(Time.now.to_i - (Time.now.to_i % 900)) }
   end
@@ -106,7 +106,7 @@ class API < Grape::API
   desc 'An endpoint which expires based on some business logic'
   get '/randomly-expiring' do
     is_expired = Time.now + Random.rand(60 * 60) + 60
-    # expire in random future
+    # expire in some random future, publicly
     expires is_expired, :public
     { randomly_expiring: is_expired }
   end
