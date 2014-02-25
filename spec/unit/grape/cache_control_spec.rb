@@ -10,15 +10,6 @@ describe Grape::CacheControl do
   context 'helpers' do
 
     describe 'cache_control' do
-      it 'sets default headers' do
-        subject.get('/oranges') do
-          cache_control
-        end
-
-        get 'oranges'
-        expect(last_response.headers['Cache-Control'].split(', ')).to include('private', 'must-revalidate', 'max-age=0')
-      end
-
       it 'sets headers' do
         subject.get('/apples') do
           cache_control :public, max_age: 60.0
@@ -67,6 +58,16 @@ describe Grape::CacheControl do
         expect(last_response.headers['Cache-Control'].split(', ')).to_not include('public')
         expect(last_response.headers['Cache-Control'].split(', ')).to include('max-age=60')
       end
+
+      it 'converts Time based values to Integers' do
+        subject.get('/blueberries') do
+          cache_control :public, max_age: (Time.now + 60)
+        end
+
+        get 'blueberries'
+        expect(last_response.headers['Cache-Control'].split(', ')).to include('public', 'max-age=60')
+      end
+
     end
 
     describe 'expires' do

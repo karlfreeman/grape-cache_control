@@ -8,7 +8,7 @@ module Grape
 
     CACHE_CONTROL         = 'Cache-Control'.freeze
     EXPIRES               = 'Expires'.freeze
-    DEFAULT_CACHE_CONTROL = 'max-age=0, private, must-revalidate'.freeze
+    TRUE                  = 'true'.freeze
     SETTABLE_DIRECTIVES   = [:max_age, :s_maxage].freeze
     TRUTHY_DIRECTIVES     = [:public, :private, :no_cache, :no_store, :no_transform, :must_revalidate, :proxy_revalidate].freeze
     ALL_DIRECTIVES        = (TRUTHY_DIRECTIVES | SETTABLE_DIRECTIVES).freeze
@@ -26,17 +26,14 @@ module Grape
           cc_directives[directive.tr('-', '_').to_sym] = argument || true
         end
 
-        if cc_directives.empty?
-          request.header(CACHE_CONTROL, DEFAULT_CACHE_CONTROL)
-        else
+        if !cc_directives.empty?
           cc_header = []
-          cc_directives[:max_age] = Float(cc_directives.delete(:max_age)).to_i if cc_directives.key? :max_age
           cc_directives.delete(:public) if cc_directives.key? :private
           cc_directives.delete(:private) if cc_directives.key? :public
           cc_directives.each do |k, v|
             if SETTABLE_DIRECTIVES.include?(k)
-              cc_header << "#{Grape::CacheControl.const_get(k.upcase)}=#{v}"
-            elsif TRUTHY_DIRECTIVES.include?(k) && v == 'true'
+              cc_header << "#{Grape::CacheControl.const_get(k.upcase)}=#{v.to_i}"
+            elsif TRUTHY_DIRECTIVES.include?(k) && v == TRUE
               cc_header << Grape::CacheControl.const_get(k.upcase)
             end
           end
@@ -64,9 +61,12 @@ module Grape
         cache_control_values = []
         values.each do |value|
           if value.is_a? Hash
-            cache_control_values.concat value.map { |k, v| "#{Grape::CacheControl.const_get(k.upcase)}=#{v}" }
+            cache_control_values.concat value.map { |k, v|
+              argument = v.is_a?(Time) ? v - Time.now : v
+              "#{Grape::CacheControl.const_get(k.upcase)}=#{argument}"
+            }
           elsif value.is_a? Symbol
-            cache_control_values << "#{value}=true"
+            cache_control_values << "#{value}=#{TRUE}"
           end
         end
         cache_control_values
