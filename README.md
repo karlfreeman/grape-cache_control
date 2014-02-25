@@ -32,8 +32,8 @@ implementations:
 * Ruby 2.1.0
 * Ruby 2.0.0
 * Ruby 1.9.3
-* [JRuby][jruby] (drivers: ruby)
-* [Rubinius][rubinius] (drivers: ruby)
+* [JRuby][jruby]
+* [Rubinius][rubinius]
 
 # Credits
 

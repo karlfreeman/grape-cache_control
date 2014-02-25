@@ -9,8 +9,8 @@ module Grape
     CACHE_CONTROL         = 'Cache-Control'.freeze
     EXPIRES               = 'Expires'.freeze
     DEFAULT_CACHE_CONTROL = 'max-age=0, private, must-revalidate'.freeze
-    SETTABLE_DIRECTIVES   = %i(max_age s_maxage).freeze
-    TRUTHY_DIRECTIVES     = %i(public private no_cache no_store no_transform must_revalidate proxy_revalidate).freeze
+    SETTABLE_DIRECTIVES   = [:max_age, :s_maxage].freeze
+    TRUTHY_DIRECTIVES     = [:public, :private, :no_cache, :no_store, :no_transform, :must_revalidate, :proxy_revalidate].freeze
     ALL_DIRECTIVES        = (TRUTHY_DIRECTIVES | SETTABLE_DIRECTIVES).freeze
 
     ALL_DIRECTIVES.each do |d|
