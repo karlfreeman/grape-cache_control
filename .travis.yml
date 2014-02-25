@@ -3,6 +3,7 @@ cache: bundler
 rvm:
   - ruby-head
   - jruby-head
+  - rbx-head
   - 2.1.0
   - 2.0.0
   - 1.9.3
@@ -13,6 +14,7 @@ matrix:
   allow_failures:
     - rvm: ruby-head
     - rvm: jruby-head
+    - rvm: rbx-head
     - rvm: rbx-19mode
     - rvm: jruby-19mode
 notifications:

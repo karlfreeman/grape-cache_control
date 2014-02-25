@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.version       = Grape::CacheControl::VERSION
   spec.authors       = ['Karl Freeman']
   spec.email         = ['karlfreeman@gmail.com']
-  spec.summary       = %q{}
-  spec.description   = %q{}
-  spec.homepage      = ''
+  spec.summary       = %q{Cache-Control and Expires helpers for Grape}
+  spec.description   = %q{Cache-Control and Expires helpers for Grape}
+  spec.homepage      = 'https://github.com/karlfreeman/grape-cache_control'
   spec.license       = 'MIT'
 
   spec.files         = `git ls-files -z`.split("\x0")
