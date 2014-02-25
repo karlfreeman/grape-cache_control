@@ -74,9 +74,7 @@ module Grape
 
       def cache_control_segments(header = nil)
         segments = []
-        unless header.nil?
-          segments = header.delete(' ').split(',')
-        end
+        segments.concat header.delete(' ').split(',') unless header.nil?
         segments
       end
     end
