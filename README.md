@@ -114,12 +114,12 @@ class API < Grape::API
 end
 ```
 
-## Build & Dependency Status
+## Badges
 
-[![Gem Version](https://badge.fury.io/rb/grape-cache_control.png)][gem]
-[![Build Status](https://travis-ci.org/karlfreeman/grape-cache_control.png)][travis]
-[![Code Quality](https://codeclimate.com/github/karlfreeman/grape-cache_control.png)][codeclimate]
-[![Gittip](http://img.shields.io/gittip/karlfreeman.png)][gittip]
+[![Gem Version](http://img.shields.io/gem/v/grape-cache_control.svg)][gem]
+[![Build Status](http://img.shields.io/travis/karlfreeman/grape-cache_control.svg)][travis]
+[![Code Quality](http://img.shields.io/codeclimate/github/karlfreeman/grape-cache_control.svg)][codeclimate]
+[![Gittip](http://img.shields.io/gittip/karlfreeman.svg)][gittip]
 
 ## Supported Ruby Versions
 
