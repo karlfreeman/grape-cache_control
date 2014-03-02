@@ -1,6 +1,6 @@
 # Grape::CacheControl
 
-`Cache-Control` and `Expires` helpers for [Grape][grape]
+`Cache-Control` and `Expires` helpers for [Grape](http://intridea.github.io/grape)
 
 ## Installation
 
@@ -126,16 +126,16 @@ end
 This library aims to support and is [tested against][travis] the following Ruby
 implementations:
 
-* Ruby 2.1.0
-* Ruby 2.0.0
-* Ruby 1.9.3
-* [JRuby][jruby]
+- Ruby 2.1.0
+- Ruby 2.0.0
+- Ruby 1.9.3
+- [JRuby][jruby]
 
 # Credits
 
 Inspiration:
 
-- [Sinatra's Cache-Control / Expires](https://github.com/sinatra/sinatra/blob/faf2efc670bf4c6076c26d5234c577950c19b699/lib/sinatra/base.rb#L439-L492)
+- [Sinatra's Cache-Control/Expires](https://github.com/sinatra/sinatra/blob/faf2efc670bf4c6076c26d5234c577950c19b699/lib/sinatra/base.rb#L439-L492)
 
 Cribbed:
 
@@ -146,5 +146,3 @@ Cribbed:
 [codeclimate]: https://codeclimate.com/github/karlfreeman/grape-cache_control
 [gittip]: https://www.gittip.com/karlfreeman
 [jruby]: http://www.jruby.org
-
-[grape]: http://intridea.github.io/grape
