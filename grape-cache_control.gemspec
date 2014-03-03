@@ -30,5 +30,4 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency 'timecop'
   spec.add_development_dependency 'pry'
   spec.add_development_dependency 'yard'
-
 end
