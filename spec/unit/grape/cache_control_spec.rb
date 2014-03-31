@@ -1,5 +1,4 @@
 require 'spec_helper'
-
 describe Grape::CacheControl do
   subject { Class.new(Grape::API) }
 
@@ -8,7 +7,6 @@ describe Grape::CacheControl do
   end
 
   context 'helpers' do
-
     describe 'cache_control' do
       it 'sets headers' do
         subject.get('/apples') do
@@ -91,7 +89,5 @@ describe Grape::CacheControl do
         expect(last_response.headers['Expires']).to eq((Time.now + 60).httpdate)
       end
     end
-
   end
-
 end
