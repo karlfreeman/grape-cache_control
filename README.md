@@ -119,6 +119,7 @@ end
 [![Gem Version](http://img.shields.io/gem/v/grape-cache_control.svg)][gem]
 [![Build Status](http://img.shields.io/travis/karlfreeman/grape-cache_control.svg)][travis]
 [![Code Quality](http://img.shields.io/codeclimate/github/karlfreeman/grape-cache_control.svg)][codeclimate]
+[![Code Coverage](http://img.shields.io/codeclimate/coverage/github/karlfreeman/grape-cache_control.svg)][codeclimate]
 [![Gittip](http://img.shields.io/gittip/karlfreeman.svg)][gittip]
 
 ## Supported Ruby Versions

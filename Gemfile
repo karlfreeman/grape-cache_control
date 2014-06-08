@@ -7,4 +7,5 @@ group :test do
   gem 'rspec'
   gem 'rack-test'
   gem 'timecop'
+  gem 'codeclimate-test-reporter'
 end
