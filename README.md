@@ -18,6 +18,12 @@ require 'grape/cache_control'
 # Cache-Control:public,max-age=900
 cache_control :public, max_age: 900
 
+# Cache-Control:public,max-age=900,stale-while-revalidate=1600
+cache_control :public, max_age: 900, stale_while_revalidate: 1600
+
+# Cache-Control:public,max-age=900,stale-while-error=1600
+cache_control :public, max_age: 900, stale_while_error: 1600
+
 # Cache-Control:public,no-store,max-age=900,s-maxage=86400
 cache_control :public, :no_store, max_age: 900, s_maxage:86400
 
