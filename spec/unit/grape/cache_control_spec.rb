@@ -66,6 +66,23 @@ describe Grape::CacheControl do
         expect(last_response.headers['Cache-Control'].split(', ')).to include('public', 'max-age=60')
       end
 
+      it 'supports stale-while-revalidate' do
+        subject.get('/stale_blueberries') do
+          cache_control :public, stale_while_revalidate: 120
+        end
+
+        get 'stale_blueberries'
+        expect(last_response.headers['Cache-Control'].split(', ')).to include('public', 'stale-while-revalidate=120')
+      end
+
+      it 'supports stale-while-error' do
+        subject.get('/error_blueberries') do
+          cache_control :public, stale_while_error: 120
+        end
+
+        get 'error_blueberries'
+        expect(last_response.headers['Cache-Control'].split(', ')).to include('public', 'stale-while-error=120')
+      end
     end
 
     describe 'expires' do
